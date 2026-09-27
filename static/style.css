@@ -5,101 +5,212 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background: #f3f6fb;
-    color: #1f2937;
+    min-height: 100vh;
+    color: #eef2ff;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.35), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.3), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.25), transparent 30%),
+        linear-gradient(135deg, #080b1a, #11162d 45%, #0a1024);
+    overflow-x: hidden;
 }
 
+/* Decorative background glow */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::before {
+    width: 280px;
+    height: 280px;
+    background: #6366f1;
+    top: 10%;
+    left: -100px;
+}
+
+body::after {
+    width: 300px;
+    height: 300px;
+    background: #06b6d4;
+    right: -120px;
+    bottom: 10%;
+}
+
+/* Header */
+
 header {
-    background: linear-gradient(135deg, #173f67, #2563a6);
-    color: white;
-    padding: 45px 20px;
+    position: relative;
+    padding: 65px 20px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(30, 41, 90, 0.9),
+            rgba(67, 56, 202, 0.75),
+            rgba(8, 145, 178, 0.7)
+        );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+}
+
+header::before,
+header::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+header::before {
+    width: 220px;
+    height: 220px;
+    top: -120px;
+    left: 8%;
+}
+
+header::after {
+    width: 300px;
+    height: 300px;
+    right: 5%;
+    bottom: -200px;
 }
 
 header h1 {
+    position: relative;
     margin: 0;
-    font-size: 42px;
-    letter-spacing: 1px;
+    font-size: 52px;
+    letter-spacing: 2px;
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
 }
 
 header p {
-    margin: 10px 0 0;
-    font-size: 17px;
-    opacity: 0.9;
+    position: relative;
+    margin: 12px 0 0;
+    font-size: 18px;
+    color: #dbeafe;
 }
+
+/* Main */
 
 main {
     width: 90%;
     max-width: 1100px;
-    margin: 40px auto;
+    margin: 50px auto;
 }
 
 main > h2 {
-    color: #173f67;
-    font-size: 27px;
-    margin-top: 35px;
+    color: #f8fafc;
+    font-size: 28px;
+    margin-top: 40px;
     margin-bottom: 8px;
 }
 
 main > p {
-    color: #64748b;
+    color: #a5b4fc;
     margin-top: 0;
 }
+
+/* Bus Cards */
 
 .bus-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
-    margin-top: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 28px;
+    margin-top: 28px;
 }
 
 .bus-card {
-    background: white;
-    padding: 25px;
-    border-radius: 14px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 5px 18px rgba(30, 58, 95, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.04)
+        );
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.bus-card::before {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.25);
+    filter: blur(30px);
+    top: -60px;
+    right: -40px;
 }
 
 .bus-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(30, 58, 95, 0.15);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow:
+        0 25px 55px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(99, 102, 241, 0.18);
 }
 
 .bus-card h3 {
+    position: relative;
     margin-top: 0;
-    margin-bottom: 18px;
-    color: #2563a6;
-    font-size: 23px;
+    margin-bottom: 20px;
+    color: #93c5fd;
+    font-size: 25px;
 }
 
 .bus-card p {
-    margin: 12px 0;
-    line-height: 1.5;
+    position: relative;
+    margin: 13px 0;
+    line-height: 1.6;
+    color: #cbd5e1;
 }
 
 .bus-card strong {
-    color: #334155;
+    color: #f8fafc;
 }
 
+/* Booking Form */
+
 form {
-    background: white;
-    padding: 28px;
-    margin: 25px 0;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.045)
+        );
+    padding: 32px;
+    margin: 28px 0;
     max-width: 650px;
-    border-radius: 14px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 5px 18px rgba(30, 58, 95, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
 }
 
 label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 7px;
+    margin-top: 16px;
+    margin-bottom: 8px;
     font-weight: bold;
-    color: #334155;
+    color: #e0e7ff;
 }
 
 input,
@@ -107,106 +218,161 @@ select {
     display: block;
     width: 100%;
     max-width: 500px;
-    padding: 12px 14px;
-    margin: 0 0 15px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    padding: 14px 15px;
+    margin: 0 0 16px;
+    color: #f8fafc;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 10px;
     font-size: 15px;
-    background: #f8fafc;
+}
+
+input::placeholder {
+    color: #94a3b8;
 }
 
 input:focus,
 select:focus {
     outline: none;
-    border-color: #2563a6;
-    box-shadow: 0 0 0 3px rgba(37, 99, 166, 0.12);
+    border-color: #818cf8;
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.18),
+        0 0 20px rgba(99, 102, 241, 0.15);
 }
 
+/* Button */
+
 button {
-    background: #2563a6;
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #8b5cf6,
+            #06b6d4
+        );
+    background-size: 200% 200%;
     color: white;
     border: none;
-    padding: 12px 22px;
-    border-radius: 8px;
+    padding: 13px 24px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 15px;
     font-weight: bold;
-    margin-top: 5px;
-    transition: background 0.2s ease, transform 0.2s ease;
+    margin-top: 6px;
+    box-shadow:
+        0 10px 25px rgba(79, 70, 229, 0.35);
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #173f67;
-    transform: translateY(-1px);
+    transform: translateY(-3px);
+    background-position: right center;
+    box-shadow:
+        0 15px 30px rgba(79, 70, 229, 0.5);
 }
+
+/* Links */
 
 a {
     display: inline-block;
-    margin: 10px 0;
-    color: #2563a6;
+    margin: 12px 0;
+    color: #93c5fd;
     font-weight: bold;
     text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #c4b5fd;
+    text-shadow: 0 0 12px rgba(147, 197, 253, 0.5);
 }
 
+/* Booking Cards */
+
 .booking-card {
-    background: white;
-    padding: 25px;
-    margin: 18px 0;
-    border-radius: 14px;
-    border-left: 5px solid #2563a6;
-    border-top: 1px solid #e2e8f0;
-    border-right: 1px solid #e2e8f0;
-    border-bottom: 1px solid #e2e8f0;
-    box-shadow: 0 5px 18px rgba(30, 58, 95, 0.08);
+    position: relative;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.12),
+            rgba(255, 255, 255, 0.045)
+        );
+    padding: 28px;
+    margin: 20px 0;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+}
+
+.booking-card::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(6, 182, 212, 0.2);
+    filter: blur(30px);
+    right: -30px;
+    top: -30px;
 }
 
 .booking-card h3 {
     margin-top: 0;
-    color: #173f67;
+    color: #a5b4fc;
 }
 
 .booking-card p {
-    margin: 10px 0;
-    color: #475569;
+    margin: 11px 0;
+    color: #cbd5e1;
 }
 
 .booking-card strong {
-    color: #1f2937;
+    color: #f8fafc;
 }
 
 .booking-card button {
-    background: #b42318;
+    background: linear-gradient(135deg, #ef4444, #be123c);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);
 }
 
 .booking-card button:hover {
-    background: #8f1d14;
+    background: linear-gradient(135deg, #dc2626, #9f1239);
 }
+
+/* Footer */
 
 footer {
     text-align: center;
-    padding: 22px;
-    margin-top: 55px;
-    background: #173f67;
-    color: white;
+    padding: 24px;
+    margin-top: 65px;
+    background: rgba(3, 7, 18, 0.75);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
     font-size: 14px;
+    backdrop-filter: blur(10px);
 }
+
+/* Mobile */
 
 @media (max-width: 600px) {
     header {
-        padding: 35px 15px;
+        padding: 45px 15px;
     }
 
     header h1 {
-        font-size: 34px;
+        font-size: 38px;
+    }
+
+    header p {
+        font-size: 15px;
     }
 
     main {
         width: 92%;
-        margin: 25px auto;
+        margin: 30px auto;
     }
 
     .bus-container {
@@ -214,6 +380,6 @@ footer {
     }
 
     form {
-        padding: 20px;
+        padding: 22px;
     }
 }
