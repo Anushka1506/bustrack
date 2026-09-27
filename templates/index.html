@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BusTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>BusTrack</h1>
+    <p>College Bus Seat & Route Management</p>
+</header>
+
+<main>
+
+    <h2>Available Buses</h2>
+
+    <div class="bus-container">
+
+        {% for bus in buses %}
+
+        <div class="bus-card">
+
+            <h3>{{ bus.number }}</h3>
+
+            <p><strong>Route:</strong> {{ bus.route }}</p>
+
+            <p><strong>Time:</strong> {{ bus.time }}</p>
+
+            <p><strong>Available Seats:</strong> {{ bus.available_seats }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <h2>Book a Seat</h2>
+
+    <form action="/book" method="POST">
+
+        <label>Your Name</label>
+
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Select Bus</label>
+
+        <select name="bus_id" required>
+
+            {% for bus in buses %}
+
+            <option value="{{ bus.id }}">
+                {{ bus.number }} - {{ bus.route }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <button type="submit">Book Seat</button>
+
+    </form>
+
+    <a href="/bookings">View My Bookings</a>
+
+</main>
+
+<footer>
+    Running Commit: {{ commit }}
+</footer>
+
+</body>
+</html>

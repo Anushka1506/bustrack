@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BusTrack - Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>BusTrack</h1>
+    <p>My Bookings</p>
+</header>
+
+<main>
+
+    <h2>Current Bookings</h2>
+
+    {% if bookings %}
+
+        {% for booking in bookings %}
+
+        <div class="booking-card">
+
+            <h3>Booking #{{ booking.id }}</h3>
+
+            <p><strong>Name:</strong> {{ booking.name }}</p>
+
+            <p><strong>Bus:</strong> {{ booking.bus }}</p>
+
+            <p><strong>Route:</strong> {{ booking.route }}</p>
+
+            <p><strong>Time:</strong> {{ booking.time }}</p>
+
+            <form action="/cancel/{{ booking.id }}" method="POST">
+                <button type="submit">Cancel Booking</button>
+            </form>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>No bookings yet.</p>
+
+    {% endif %}
+
+    <a href="/">Back to Home</a>
+
+</main>
+
+<footer>
+    Running Commit: {{ commit }}
+</footer>
+
+</body>
+</html>
