@@ -47,10 +47,14 @@ def home():
 @app.route("/book", methods=["POST"])
 def book():
     name = request.form.get("name", "").strip()
+    phone = request.form.get("phone", "").strip()
     bus_id = request.form.get("bus_id", "")
 
-    if not name or not bus_id:
-        return "Name and bus are required", 400
+    if not name or not phone or not bus_id:
+        return "Name, phone number and bus are required", 400
+
+    if not bus_id.isdigit():
+        return "Invalid bus selection", 400
 
     bus = next(
         (bus for bus in buses if bus["id"] == int(bus_id)),
@@ -66,6 +70,7 @@ def book():
     booking = {
         "id": len(bookings) + 1,
         "name": name,
+        "phone": phone,
         "bus": bus["number"],
         "route": bus["route"],
         "time": bus["time"]

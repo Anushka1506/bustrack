@@ -28,6 +28,7 @@ def test_add_booking():
         "/book",
         data={
             "name": "Anushka",
+            "phone": "9876543210",
             "bus_id": "1"
         }
     )
@@ -35,6 +36,7 @@ def test_add_booking():
     assert response.status_code == 302
     assert len(bookings) == 1
     assert bookings[0]["name"] == "Anushka"
+    assert bookings[0]["phone"] == "9876543210"
 
 
 def test_invalid_booking():
@@ -44,6 +46,7 @@ def test_invalid_booking():
         "/book",
         data={
             "name": "",
+            "phone": "9876543210",
             "bus_id": "1"
         }
     )
