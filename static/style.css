@@ -96,3 +96,10 @@ footer {
     margin-top: 30px;
     background: #ddd;
 }
+.booking-card button {
+    margin-top: 10px;
+}
+
+.bus-card h3 {
+    margin-top: 0;
+}
