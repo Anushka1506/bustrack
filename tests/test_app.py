@@ -1,4 +1,9 @@
-from app import app, buses, bookings
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from app import app, buses, bookings  # noqa: E402
 
 
 def client():
